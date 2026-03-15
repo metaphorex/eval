@@ -38,13 +38,16 @@ def _make_openrouter_client() -> OpenAI:
     )
 
 
+M4X_FULL_LIMIT = 50  # Full-detail entries — keeps prompt under context limits
+
+
 def _build_data_blocks(mappings: list[dict]) -> dict[str, str]:
     """Build the data block string for each condition."""
     return {
         "baseline": "",
         "frames_only": to_frames_list(mappings),
         "m4x_pairs": to_pairs_block(mappings),
-        "m4x_full": to_context_block(mappings),
+        "m4x_full": to_context_block(mappings[:M4X_FULL_LIMIT]),
     }
 
 
@@ -73,11 +76,22 @@ def run_single(
 
     model_id = OPENROUTER_MODELS[model_key]
     client = _make_openrouter_client()
-    resp = client.chat.completions.create(
-        model=model_id,
-        max_tokens=2000,
-        messages=msgs,
-    )
+    try:
+        resp = client.chat.completions.create(
+            model=model_id,
+            max_tokens=2000,
+            messages=msgs,
+        )
+    except Exception as e:
+        print(f"  ERROR: {e}")
+        return {
+            "scenario": scenario.name,
+            "condition": condition,
+            "model": model_key,
+            "model_id": model_id,
+            "response": "",
+            "error": str(e),
+        }
     text = resp.choices[0].message.content
     return {
         "scenario": scenario.name,
