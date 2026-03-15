@@ -52,9 +52,9 @@ def score_results(results: list[dict], dry_run: bool = False) -> list[dict]:
     """
     client = None
     if not dry_run:
-        from anthropic import Anthropic
+        from scoring.client import make_scoring_client
 
-        client = Anthropic()
+        client = make_scoring_client()
 
     scored = []
     for r in results:

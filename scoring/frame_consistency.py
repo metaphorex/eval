@@ -62,23 +62,25 @@ def score_frame_consistency(response: str, client=None) -> float:
 
     Args:
         response: The naming task response text to score.
-        client: An Anthropic client instance. If None, creates one.
+        client: An OpenAI-compatible client (e.g. OpenRouter). If None, creates one.
 
     Returns:
         Float between 0.0 and 1.0 representing frame consistency.
     """
     if client is None:
-        from anthropic import Anthropic
+        from scoring.client import make_scoring_client
 
-        client = Anthropic()
+        client = make_scoring_client()
 
-    result = client.messages.create(
-        model="claude-haiku-4-5-20251001",
+    from scoring.client import SCORING_MODEL
+
+    result = client.chat.completions.create(
+        model=SCORING_MODEL,
         max_tokens=1000,
         messages=[
             {"role": "user", "content": EXTRACTION_PROMPT.format(response=response)}
         ],
     )
-    text = result.content[0].text
+    text = result.choices[0].message.content
     parsed = parse_consistency_result(text)
     return parsed["consistency_ratio"]

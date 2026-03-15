@@ -76,18 +76,20 @@ def score_structural_fidelity(
     Args:
         response: The naming task response text to score.
         system_desc: Description of the system being named.
-        client: An Anthropic client instance. If None, creates one.
+        client: An OpenAI-compatible client (e.g. OpenRouter). If None, creates one.
 
     Returns:
         Dict with 'fidelity' and 'mislead_quality' scores (0.0-1.0).
     """
     if client is None:
-        from anthropic import Anthropic
+        from scoring.client import make_scoring_client
 
-        client = Anthropic()
+        client = make_scoring_client()
 
-    result = client.messages.create(
-        model="claude-haiku-4-5-20251001",
+    from scoring.client import SCORING_MODEL
+
+    result = client.chat.completions.create(
+        model=SCORING_MODEL,
         max_tokens=1500,
         messages=[{
             "role": "user",
@@ -96,7 +98,7 @@ def score_structural_fidelity(
             ),
         }],
     )
-    text = result.content[0].text
+    text = result.choices[0].message.content
     parsed = parse_fidelity_result(text)
     return {
         "fidelity": parsed["fidelity"],
