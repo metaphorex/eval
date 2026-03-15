@@ -1,4 +1,8 @@
 # promptfoo config for prompt sensitivity testing
+#
+# Prerequisites:
+#   direnv allow   (loads .envrc which sets OPENAI_API_KEY from OPENROUTER_API_KEY)
+#
 # Run: npx promptfoo@latest eval --config promptfoo/promptfooconfig.yaml
 # View: npx promptfoo@latest view
 
@@ -18,6 +22,14 @@ providers:
     label: gemini-flash-lite
     config:
       apiHost: openrouter.ai/api
+
+# Route the LLM judge through OpenRouter too (uses gemini-flash-lite, cheap)
+defaultTest:
+  options:
+    provider:
+      id: openai:chat:google/gemini-2.5-flash-lite
+      config:
+        apiHost: openrouter.ai/api
 
 tests:
   - vars:
