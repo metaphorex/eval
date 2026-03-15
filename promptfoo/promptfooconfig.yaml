@@ -1,7 +1,6 @@
 # promptfoo config for prompt sensitivity testing
 #
-# Prerequisites:
-#   direnv allow   (loads .envrc which sets OPENAI_API_KEY from OPENROUTER_API_KEY)
+# Prerequisites: export OPENROUTER_API_KEY=sk-or-v1-...
 #
 # Run: npx promptfoo@latest eval --config promptfoo/promptfooconfig.yaml
 # View: npx promptfoo@latest view
@@ -14,22 +13,16 @@ prompts:
   - file://prompts/v5.txt  # Creativity nudge: "avoid the obvious"
 
 providers:
-  - id: openai:chat:deepseek/deepseek-chat-v3-0324
+  - id: openrouter:deepseek/deepseek-chat-v3-0324
     label: deepseek-v3
-    config:
-      apiHost: openrouter.ai/api
-  - id: openai:chat:google/gemini-2.5-flash-lite
+  - id: openrouter:google/gemini-2.5-flash-lite
     label: gemini-flash-lite
-    config:
-      apiHost: openrouter.ai/api
 
-# Route the LLM judge through OpenRouter too (uses gemini-flash-lite, cheap)
+# Route the LLM judge through OpenRouter too
 defaultTest:
   options:
     provider:
-      id: openai:chat:google/gemini-2.5-flash-lite
-      config:
-        apiHost: openrouter.ai/api
+      id: openrouter:google/gemini-2.5-flash-lite
 
 tests:
   - vars:
