@@ -34,3 +34,8 @@ results/raw/
 # Environment
 .env
 .env.local
+.envrc
+
+# promptfoo
+promptfoo/output/
+.promptfoo/

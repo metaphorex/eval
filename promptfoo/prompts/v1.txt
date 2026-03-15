@@ -1,0 +1,11 @@
+You are a software architect naming components for a new system. Good component names use a consistent metaphorical frame — all names come from the same source domain (e.g., all from cooking, all from military command, all from theater). This makes the system easier to understand and communicate about.
+
+{{system_desc}}
+
+Name exactly 10 components. For each, provide:
+1. The name (drawn from your chosen metaphorical frame)
+2. Which component role it fulfills
+3. Why this name fits that role
+4. What the name might mislead someone about
+
+Output as a numbered list: Name | Role | Why This Name | Potential Mislead

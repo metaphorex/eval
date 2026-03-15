@@ -1,0 +1,51 @@
+# promptfoo config for prompt sensitivity testing
+# Run: npx promptfoo@latest eval --config promptfoo/promptfooconfig.yaml
+# View: npx promptfoo@latest view
+
+prompts:
+  - file://prompts/v1.txt
+  - file://prompts/v2.txt
+  - file://prompts/v3.txt
+
+providers:
+  - id: openrouter:deepseek/deepseek-chat-v3-0324:free
+    label: deepseek-v3
+  - id: openrouter:google/gemini-2.5-flash-lite-preview
+    label: gemini-flash-lite
+
+tests:
+  - vars:
+      system_desc: >
+        A distributed task queue for ML model training jobs. Components include:
+        job submission, resource allocation, data loading, model checkpointing,
+        gradient synchronization, failure recovery, result aggregation, scheduling,
+        monitoring, and artifact storage.
+    assert:
+      # Check that output contains pipe-separated format
+      - type: contains
+        value: "|"
+      # Check that output has numbered items
+      - type: regex
+        value: "\\d+\\."
+      # Check frame consistency: most names should reference the same domain
+      - type: llm-rubric
+        value: >
+          Do the component names all come from the same metaphorical source domain
+          (e.g., all cooking, all military, all theater)? Score 1 if 8+ names share
+          a domain, 0.5 if 5-7 share, 0 if fewer than 5 share.
+
+  - vars:
+      system_desc: >
+        An automated content moderation pipeline for a social platform. Components
+        include: content ingestion, classification, human review queue, appeal
+        handling, policy enforcement, audit logging, reporter feedback, false
+        positive tracking, escalation routing, and metrics dashboard.
+    assert:
+      - type: contains
+        value: "|"
+      - type: regex
+        value: "\\d+\\."
+      - type: llm-rubric
+        value: >
+          Do the component names all come from the same metaphorical source domain?
+          Score 1 if 8+ names share a domain, 0.5 if 5-7 share, 0 if fewer than 5.
