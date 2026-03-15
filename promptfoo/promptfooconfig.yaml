@@ -3,9 +3,11 @@
 # View: npx promptfoo@latest view
 
 prompts:
-  - file://prompts/v1.txt
-  - file://prompts/v2.txt
-  - file://prompts/v3.txt
+  - file://prompts/v1.txt  # Control: architect persona, explicit encouragement
+  - file://prompts/v2.txt  # Team framing, conversational tone
+  - file://prompts/v3.txt  # Minimal: no persona, no explanation of why
+  - file://prompts/v4.txt  # Few-shot: shows a worked example first
+  - file://prompts/v5.txt  # Creativity nudge: "avoid the obvious"
 
 providers:
   - id: openrouter:deepseek/deepseek-chat-v3-0324:free
@@ -21,18 +23,21 @@ tests:
         gradient synchronization, failure recovery, result aggregation, scheduling,
         monitoring, and artifact storage.
     assert:
-      # Check that output contains pipe-separated format
       - type: contains
         value: "|"
-      # Check that output has numbered items
       - type: regex
         value: "\\d+\\."
-      # Check frame consistency: most names should reference the same domain
       - type: llm-rubric
         value: >
           Do the component names all come from the same metaphorical source domain
           (e.g., all cooking, all military, all theater)? Score 1 if 8+ names share
           a domain, 0.5 if 5-7 share, 0 if fewer than 5 share.
+      - type: llm-rubric
+        value: >
+          For each component, does the "Potential Mislead" identify a genuine,
+          non-obvious risk of the metaphorical name — something that could actually
+          confuse a new team member? Score 1 if 8+ misleads are substantive,
+          0.5 if 5-7 are, 0 if fewer than 5 are.
 
   - vars:
       system_desc: >
@@ -49,3 +54,8 @@ tests:
         value: >
           Do the component names all come from the same metaphorical source domain?
           Score 1 if 8+ names share a domain, 0.5 if 5-7 share, 0 if fewer than 5.
+      - type: llm-rubric
+        value: >
+          For each component, does the "Potential Mislead" identify a genuine,
+          non-obvious risk of the metaphorical name? Score 1 if 8+ misleads are
+          substantive, 0.5 if 5-7 are, 0 if fewer than 5 are.

@@ -1,13 +1,11 @@
-You are a software architect naming components for a new system.
-
 {{system_desc}}
 
-Name exactly 10 components. For each, provide:
-1. The name (drawn from a consistent metaphorical frame — all names should come from the same source domain, e.g., cooking, military, theater)
-2. Which component role it fulfills
-3. Why this name fits that role
+Name exactly 10 components for this system. All names must come from a single metaphorical source domain.
+
+For each component:
+1. Name
+2. Role
+3. Why this name fits
 4. What the name might mislead someone about
 
-Good component names use a unified metaphorical frame because it makes the system easier to understand and communicate about.
-
-Output as a numbered list: Name | Role | Why This Name | Potential Mislead
+Output as: Name | Role | Why This Name | Potential Mislead

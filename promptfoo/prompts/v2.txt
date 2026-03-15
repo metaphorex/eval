@@ -1,11 +1,11 @@
-You are a software architect choosing names for a new system's components. The best naming schemes draw all names from a single metaphorical domain — for example, every name comes from cooking, or every name comes from theater. A unified domain makes the system's structure intuitive to discuss.
+Your team is designing a new system and needs memorable, consistent names for its components. The best naming schemes pick a single metaphor and commit to it — every component name comes from one world (a kitchen, a hospital, a space mission, a jazz ensemble). When the whole system speaks the same metaphorical language, onboarding and everyday conversation get dramatically easier.
 
 {{system_desc}}
 
-Name exactly 10 components. For each, provide:
-1. The name (drawn from your chosen metaphorical domain)
-2. Which component role it fulfills
-3. Why this name fits that role
-4. What the name might mislead someone about
+Name all 10 components. For each one:
+- What's the name? (from your chosen metaphor)
+- What role does it play in the system?
+- Why does this name work for that role?
+- Where could this name trip someone up or create a wrong impression?
 
-Output as a numbered list: Name | Role | Why This Name | Potential Mislead
+Format each as: Name | Role | Why This Name | Potential Mislead

@@ -1,0 +1,13 @@
+Here's an example of metaphorical naming done well for a deployment pipeline using kitchen metaphors:
+
+> 1. Prep Station | data validation | ingredients are inspected and prepared before cooking begins | suggests the work is simple or mechanical
+> 2. Recipe | deployment manifest | a recipe is a precise sequence of steps that produces a known result | implies the output is always identical, ignoring environmental variation
+
+Notice how each name maps structurally to the role (not just superficially), and the "mislead" column identifies a real risk of the metaphor, not a trivial one.
+
+Now do the same for this system:
+
+{{system_desc}}
+
+Pick ONE metaphorical source domain. Name exactly 10 components. For each:
+Name | Role | Why This Name | Potential Mislead

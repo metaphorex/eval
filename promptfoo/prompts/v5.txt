@@ -1,0 +1,5 @@
+{{system_desc}}
+
+Name 10 components for this system. Choose an unexpected metaphorical source domain — avoid the obvious (factory, pipeline, military). All 10 names should come from the same domain.
+
+For each: Name | Role | Why This Name | Potential Mislead
