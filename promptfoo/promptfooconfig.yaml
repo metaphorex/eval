@@ -13,13 +13,11 @@ providers:
   - id: openai:chat:deepseek/deepseek-chat-v3-0324
     label: deepseek-v3
     config:
-      apiHost: https://openrouter.ai/api/v1
-      apiKeyEnvar: OPENROUTER_API_KEY
+      apiHost: openrouter.ai/api
   - id: openai:chat:google/gemini-2.5-flash-lite
     label: gemini-flash-lite
     config:
-      apiHost: https://openrouter.ai/api/v1
-      apiKeyEnvar: OPENROUTER_API_KEY
+      apiHost: openrouter.ai/api
 
 tests:
   - vars:
