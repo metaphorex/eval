@@ -18,11 +18,11 @@ from harnesses.in_context import CONDITIONS, build_messages
 RESULTS_DIR = Path("results/naming")
 
 OPENROUTER_MODELS = {
-    "nemotron-super": "nvidia/llama-3.3-nemotron-super-49b-v1:free",
+    "deepseek-v3": "deepseek/deepseek-chat-v3-0324",
+    "gemini-flash-lite": "google/gemini-2.5-flash-lite",
     "qwen3.5-9b": "qwen/qwen3.5-9b",
-    "mercury-2": "inception/mercury-coder-small",
-    "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
-    "gemini-flash-lite": "google/gemini-2.5-flash-lite-preview",
+    "gpt5-nano": "openai/gpt-5-nano",
+    "gemma-3-27b": "google/gemma-3-27b-it",
 }
 
 

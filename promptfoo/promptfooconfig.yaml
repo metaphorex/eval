@@ -10,9 +10,9 @@ prompts:
   - file://prompts/v5.txt  # Creativity nudge: "avoid the obvious"
 
 providers:
-  - id: openrouter:deepseek/deepseek-chat-v3-0324:free
+  - id: openrouter:deepseek/deepseek-chat-v3-0324
     label: deepseek-v3
-  - id: openrouter:google/gemini-2.5-flash-lite-preview
+  - id: openrouter:google/gemini-2.5-flash-lite
     label: gemini-flash-lite
 
 tests:
